@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>All Practice Assignments</h1>
+  <h1>Today's Practice Assignments</h1>
 </div>
 
 <table class="table">
@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @todays_tasks.each do |task| %>
       <tr>
         <td><%= link_to task.title, task_path(task) %></td>
         <td><%= task.task_date.pretty_date %></td>
@@ -19,5 +19,4 @@
   </tbody>
 </table>
 
-
-<%= link_to "New Practice Assignment" %>
+<%= link_to "New Practice Assignment", new_task_path %>

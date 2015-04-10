@@ -1,0 +1,17 @@
+<%= form_for @task do |f| %>
+  <%= f.label :category_id, "Area of Focus" %>
+  <%= f.collection_select(:category_id, Category.where(user_id: [@current_user.id, nil]), :id, :name) %>
+  <br>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br>
+  <%= f.label :task_date_id, "Assigned to date" %>
+  <%= f.collection_select(:task_date_id, TaskDate.where(date: Date.today.beginning_of_day..2.weeks.from_now.beginning_of_day), :id, :pretty_date) %>
+  <br>
+  <%= f.submit "Whoosh!" %>
+<% end %>
+
+<!-- TaskDate.find(2).date.strftime("%a %B %e %Y") -->

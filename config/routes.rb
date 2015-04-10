@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'sign-in', to: 'authentication#new'
   post 'sign-in', to: 'authentication#create'
 
-  resources :tasks, only: [:index]
+  get '/tasks/today', to: 'tasks#today', as: :tasks_today
+
+  resources :tasks, only: [:index, :show, :new, :create]
+  resources :users, only: [:show]
 
 end

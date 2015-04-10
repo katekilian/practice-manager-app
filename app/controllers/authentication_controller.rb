@@ -1,5 +1,7 @@
 class AuthenticationController < ApplicationController
 
+  skip_before_action :require_login
+
   def new
   end
 
@@ -8,7 +10,7 @@ class AuthenticationController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "You're now logged in! WOO!"
-      redirect_to tasks_path
+      redirect_to session[:previous_url] || tasks_path
     else
       flash[:error] = "Oops, your username or password is not in our database. Please try again."
       render :new
